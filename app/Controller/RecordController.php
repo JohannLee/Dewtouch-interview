@@ -7,8 +7,10 @@
 			
 			$this->setFlash('Listing Record page too slow, try to optimize it.');
 			
-			
-			$records = $this->Record->find('all');
+			// since there is no foreign key reference just don't use recursive call for find().
+			$records = $this->Record->find('all', array(
+                'recursive' => -1,
+            ));
 			
 			$this->set('records',$records);
 			
